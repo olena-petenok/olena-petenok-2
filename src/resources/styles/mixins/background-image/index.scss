@@ -1,0 +1,63 @@
+@mixin background-image($url, $image) {
+  background: url("~resources/images/" + $url + "/" + $image + ".svg") center
+    no-repeat;
+  background-size: contain;
+}
+
+@mixin background-image-with-width-height($width, $height, $url, $image) {
+  width: $width;
+  height: $height;
+
+  @include background-image($url, $image);
+}
+
+@mixin remove-background-image() {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+@mixin background-image-pseudo-class($width, $height, $url, $image) {
+  content: "";
+  display: inline-block;
+
+  @include background-image-with-width-height($width, $height, $url, $image);
+}
+
+@mixin background-image-before($width, $height, $url, $image) {
+  &::before {
+    @include background-image-pseudo-class($width, $height, $url, $image);
+  }
+}
+
+@mixin background-image-after($width, $height, $url, $image) {
+  &::after {
+    @include background-image-pseudo-class($width, $height, $url, $image);
+  }
+}
+
+@mixin absolute-before {
+  position: relative;
+
+  &::before {
+    position: absolute;
+  }
+}
+
+@mixin absolute-after {
+  position: relative;
+
+  &::after {
+    position: absolute;
+  }
+}
+
+@mixin background-image-before-absolute($width, $height, $url, $image) {
+  @include absolute-before();
+  @include background-image-before($width, $height, $url, $image);
+}
+
+@mixin background-image-after-absolute($width, $height, $url, $image) {
+  @include absolute-after();
+  @include background-image-after($width, $height, $url, $image);
+}

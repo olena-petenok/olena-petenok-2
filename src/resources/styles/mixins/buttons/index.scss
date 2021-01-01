@@ -1,0 +1,59 @@
+@import "../general/index.scss";
+
+@mixin button($font-size, $max-width, $max-height, $border-radius) {
+  cursor: pointer;
+
+  max-width: $max-width;
+  width: 100%;
+
+  max-height: $max-height;
+  height: $max-height;
+  min-height: $max-height;
+  box-sizing: border-box;
+
+  font-size: $font-size;
+
+  border-radius: $border-radius;
+
+  @include text-overflow-ellipsis($max-width);
+  @include transition();
+  @include remove-outline();
+}
+
+@mixin link-as-button(
+  $font-size,
+  $max-width,
+  $max-height,
+  $border-radius,
+  $padding-verticall,
+  $padding-horizontal
+) {
+  @include button($font-size, $max-width, $max-height, $border-radius);
+
+  display: inline-block;
+
+  text-decoration: none;
+  text-align: center;
+
+  padding-top: $padding-vertical;
+  padding-bottom: $padding-vertical;
+
+  padding-left: $padding-horizontal;
+  padding-right: $padding-horizontal;
+}
+
+@mixin button-colors($color, $background-color) {
+  color: $color;
+  background-color: $background-color;
+}
+
+@mixin button-colors-with-border($color, $inverse-color) {
+  border: 1px solid $color;
+  color: $color;
+  background-color: $inverse-color;
+
+  &:hover {
+    color: $inverse-color;
+    background-color: $color;
+  }
+}

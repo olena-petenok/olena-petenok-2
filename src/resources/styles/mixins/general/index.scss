@@ -1,0 +1,76 @@
+@mixin remove-default-styles() {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+  }
+}
+
+@mixin remove-outline() {
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin text-overflow-ellipsis($max-width) {
+  max-width: $max-width;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin link-color($color) {
+  color: $color;
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: $color;
+  }
+}
+
+@mixin link-decoration($size, $color, $weight: "normal") {
+  font-size: $size;
+  font-weight: $weight;
+
+  @include link-color($color);
+}
+
+@mixin link-background($horizontal, $vertical, $color, $radius: 0px) {
+  display: inline-block;
+
+  padding-left: $horizontal;
+  padding-right: $horizontal;
+  padding-top: $vertical;
+  padding-bottom: $vertical;
+
+  background-color: $color;
+
+  border-radius: $radius;
+}
+
+@mixin transition($time: 0.3s, $style: ease-out) {
+  transition: all $time $style;
+  -webkit-transition: all $time $style;
+  -moz-transition: all $time $style;
+  -ms-transition: all $time $style;
+  -o-transition: all $time $style;
+}

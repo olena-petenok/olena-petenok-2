@@ -1,0 +1,5 @@
+@import "../../../resources/styles/mixins/index.scss";
+
+.app {
+  @include remove-default-styles();
+}
